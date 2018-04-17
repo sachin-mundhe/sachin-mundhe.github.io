@@ -20,18 +20,11 @@
     <script>
         function myFunction() {
             var x = document.getElementById("otaString").value;
-            //var str = "a,b,c,d,e,f";
-            //var arr = str.split(",");
-            var arr = x.split('\n');
-            //            alert(x);
-            //            alert(arr[1]);
+
+            var arr = x.split(/,|\n/);
+
             console.log(arr);
-            //            console.log(arr.entries);
-            //alert();
-            //alert(x);
-            //alert(document.getElementById("otaString").innerHTML);
-            //var arr = str.split(",");
-            //document.getElementById("demo").innerHTML = arr[2];
+
         }
 
     </script>
@@ -39,3 +32,4 @@
 </body>
 
 </html>
+//var str = "a,b,c,d,e,f"; //var arr = str.split(","); // alert(x); // alert(arr[1]); // console.log(arr.entries); //alert(); //alert(x); //alert(document.getElementById("otaString").innerHTML); //var arr = str.split(","); //document.getElementById("demo").innerHTML = arr[2];
