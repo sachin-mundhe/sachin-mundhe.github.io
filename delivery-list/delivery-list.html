@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["fname"].value;
+            //            if (x == "") {
+            //                alert("Name must be filled out");
+            //                return false;
+            //            }
+            return false;
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        ES Id: <textarea type="text" id="esId" rows="2" cols="40">ES156210</textarea>
+    </div>
+
+    <div>
+        ST Id: <textarea type="text" id="stId" rows="2" cols="40">ST546826</textarea>
+    </div>
+
+    <div>
+        IT No: <textarea type="text" id="itNo" rows="4" cols="40">
+120567, 456789
+672892
+455988
+569825 
+        </textarea>
+    </div>
+
+    <div>
+        OTA : <textarea type="text" id="otaString" rows="4" cols="40">
+Go8/3563,gs9/6236, jhs/36 , sdh/368, 
+sdj/5632, shj/2637</textarea>
+    </div>
+
+    <input type="button" value="Submit" onsubmit="return validateForm()" onclick="myFunction()">
+
+    <table id="cpyTable" style="border: 1px solid black"> </table>
+
+
+    <script>
+        function myFunction() {
+
+            //ES ID's
+            var es = document.getElementById("esId").value.trim();
+            if (es.length != 8) {
+                errorMsg("Kindly check ES Id");
+                return;
+            }
+
+            //ST ID's
+            var st = document.getElementById("stId").value.trim();
+            if (st.length != 8) {
+                errorMsg("Kindly check ST Id");
+                return;
+            }
+
+            //Item Numbers
+            var temp = document.getElementById("itNo").value.trim().split(/,|\n/);
+            var i = 0;
+            var it = [];
+            for (i = 0; i < temp.length; i++) {
+                itemNo = temp[i].trim().replace(/-/, "");
+
+                if (itemNo.length == 6)
+                    it.push(itemNo);
+            }
+            if (it.length == 0) {
+                errorMsg("Please check item numbers");
+                return;
+            }
+
+            //List of live pub & pages
+            var str = "";
+            var pub = [];
+            var opage = [];
+
+            var x = document.getElementById("otaString").value;
+            var arr = x.split(/,/);
+            var i;
+            for (i = 0; i < arr.length; i++) {
+                var arr1 = arr[i].trim().split('/');
+                if (arr1.length == 2) {
+                    var j = arr1[0].match(/go8|gs9/gi);
+                    if (j) {
+                        pub.push(j[0].trim());
+                        opage.push(arr1[1].trim());
+                    }
+                }
+            }
+            if (opage.length == 0) {
+                errorMsg("Given style id is not live on any page/pub");
+                return;
+            }
+
+            //Clear table
+            document.getElementById("cpyTable").innerHTML = "";
+
+            //Create table
+            generateTable(es, st, it, pub, opage);
+
+            //Copy to clipboard
+            copyToClipboard(document.getElementById("cpyTable"));
+
+            //clear the teat areas
+            clearTextAreas();
+
+
+
+            //console.log(temp.length);
+            //console.log(document.getElementById("esId").value.length);
+        }
+
+        function errorMsg(msg) {
+            alert(msg);
+        }
+
+        function generateTable(es, st, it, pub, opage) {
+
+            var table = document.getElementById("cpyTable");
+
+            var currentRow = 0;
+            var i = 0;
+            for (i = 0; i < it.length; i++) {
+                var j = 0;
+                for (j = 0; j < pub.length; j++) {
+                    var row = table.insertRow(currentRow);
+                    row.insertCell(0).innerHTML = es;
+                    row.insertCell(1).innerHTML = it[i];
+                    row.insertCell(2).innerHTML = st;
+                    row.insertCell(3).innerHTML = opage[j];
+                    row.insertCell(4).innerHTML = " ";
+                    row.insertCell(5).innerHTML = pub[j];
+                    currentRow++;
+                }
+
+            }
+
+        }
+
+        function copyToClipboard(el) {
+            var body = document.body,
+                range, sel;
+            if (document.createRange && window.getSelection) {
+                range = document.createRange();
+                sel = window.getSelection();
+                sel.removeAllRanges();
+                try {
+                    range.selectNodeContents(el);
+                    sel.addRange(range);
+                    console.log(range);
+
+                } catch (e) {
+                    range.selectNode(el);
+                    sel.addRange(range);
+                }
+            } else if (body.createTextRange) {
+                range = body.createTextRange();
+                range.moveToElementText(el);
+                range.select();
+                console.log("OST");
+            }
+
+            document.execCommand("Copy");
+        }
+
+        function clearTextAreas() {
+            document.getElementById("esId").innerHTML = "";
+            document.getElementById("stId").innerHTML = "";
+            document.getElementById("itNo").innerHTML = "";
+            document.getElementById("otaString").innerHTML = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+<!--
+var re = new RegExp("a|b", "i");
+var re = /a|b/i;-->
