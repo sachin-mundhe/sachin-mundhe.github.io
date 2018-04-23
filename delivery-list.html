@@ -9,34 +9,114 @@
             //                alert("Name must be filled out");
             //                return false;
             //            }
+            return false;
         }
 
     </script>
 </head>
 
 <body>
-    Name: <textarea type="text" id="otaString" name="fname" rows="5" cols="50">sdsds</textarea>
+    <div>
+        ES Id: <textarea type="text" id="esId" rows="2" cols="40">ES156210</textarea>
+    </div>
+
+    <div>
+        ST Id: <textarea type="text" id="stId" rows="2" cols="40">ST546826</textarea>
+    </div>
+
+    <div>
+        IT No: <textarea type="text" id="itNo" rows="4" cols="40">
+120567, 456789
+672892
+455988
+569825 
+        </textarea>
+    </div>
+
+    <div>
+        OTA : <textarea type="text" id="otaString" rows="4" cols="40">
+Go8/3563,gs9/6236, jhs/36 , sdh/368, 
+sdj/5632, shj/2637</textarea>
+    </div>
+
     <input type="button" value="Submit" onsubmit="return validateForm()" onclick="myFunction()">
+
+    <table id="cpyTable"> </table>
+
+
     <script>
         function myFunction() {
+
+            //ES ID's
+            var es = document.getElementById("esId").value.trim();
+            if (es.length != 8) {
+                errorMsg("Kindly check ES Id");
+                return;
+            }
+
+            //ST ID's
+            var st = document.getElementById("stId").value.trim();
+            if (st.length != 8) {
+                errorMsg("Kindly check ST Id");
+                return;
+            }
+
+            //Item Numbers
+            var temp = document.getElementById("itNo").value.trim().split(/,|\n/);
+            var i = 0;
+            var it = [];
+            for (i = 0; i < temp.length; i++) {
+                itemNo = temp[i].trim();
+                if (itemNo.length == 6)
+                    it.push(itemNo);
+            }
+
+            //List of live pub & pages
+            var str = "";
+            var pub = [];
+            var opage = [];
+
             var x = document.getElementById("otaString").value;
-
-            var arr = x.split(/,|\n/);
+            var arr = x.split(/,/);
             var i;
-            for(i=0;i < arr.length; i++) {
-               var arr1 = arr.split('/');¡
-               var pub = arr1[0];
-               var pageno = arr1[1];
-            } 
-            
- 
-            //console.log(arr);
+            for (i = 0; i < arr.length; i++) {
+                var arr1 = arr[i].trim().split('/');
+                if (arr1.length == 2) {
+                    var j = arr1[0].match(/go8|gs9/gi);
+                    if (j) {
+                        pub.push(j[0].trim());
+                        opage.push(arr1[1].trim());
+                    }
+                }
+            }
 
+
+            //Create table
+            generateTable(es, st, it, pub, opage);
+
+            var dArr = [];
+            dArr.push("abc");
+            dArr.push("bcd");
+            dArr.push('cde');
+            console.log(pub);
+            console.log(opage);
+
+            //console.log(temp.length);
+            //console.log(document.getElementById("esId").value.length);
         }
+
+        function errorMsg(msg) {
+            alert(msg);
+        }
+
+        function generateTable(es, st, it, pub, opage)
 
     </script>
 
 </body>
 
 </html>
-//var str = "a,b,c,d,e,f"; //var arr = str.split(","); // alert(x); // alert(arr[1]); // console.log(arr.entries); //alert(); //alert(x); //alert(document.getElementById("otaString").innerHTML); //var arr = str.split(","); //document.getElementById("demo").innerHTML = arr[2];
+
+<!--
+var re = new RegExp("a|b", "i");
+var re = /a|b/i;-->
