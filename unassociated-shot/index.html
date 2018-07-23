@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="JSFunctions/MainFunction_ExtractItems/MainFunction.js"></script>
+    <script src="JSFunctions/ExtractItemNumbers/ExtractItemNumbers.js"></script>
+    <script src="JSFunctions/CopyTableToClipboard/copyTableToClipboard.js"></script>
+    <script src="JSFunctions/GenerateTable_ListOfItems/GenerateTable.js"></script>
+    <script src="JSFunctions/ExtractAssociatedShots/ExtractAssociatedShots.js"></script>
+    
+</head>
+
+<body>
+    <div>
+        All shots: <textarea type="text" id="allShots" rows="4" cols="40">
+shot 
+shot a
+shot b
+shot ac 
+        </textarea>
+    </div>
+
+    <div>
+        Associated shots: <textarea type="text" id="associatedShots" rows="4" cols="40">
+        a
+        b
+        d-e
+        ab
+        ad-af
+        </textarea>
+    </div>
+
+    <input type="button" value="Submit" onclick="mainFunction()">
+
+    <table id="cpyTable" style="border: 1px solid black"> </table>
+
+</body>
+
+</html>
+
+<!--
+var re = new RegExp("a|b", "i");
+var re = /a|b/i;-->
