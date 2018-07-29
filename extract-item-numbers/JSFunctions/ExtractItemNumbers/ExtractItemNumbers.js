@@ -1,6 +1,7 @@
 function extractItemNumbers(data) {
     //Item Numbers
-    var temp = data.match(/\d\d\d\d\d\d|\d\d\d-\d\d\d/gi);
+    var res = data.replace(/st\d\d\d\d\d\d|es\d\d\d\d\d\d/gi, " ");
+    var temp = res.match(/\d\d\d\d\d\d|\d\d\d-\d\d\d/gi);
     console.log(temp);
     var i = 0;
     var listOfItems = [];
