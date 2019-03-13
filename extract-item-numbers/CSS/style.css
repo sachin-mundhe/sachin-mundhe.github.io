@@ -1,0 +1,116 @@
+#temp { 
+            
+        }
+        
+        .jumbotron {
+            background-color: #dddddd;
+            min-height: 100%;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #936c6c;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
+        
+        
+        #msg {
+            text-align: center;
+        }
+        
+        #btnGrid {
+        
+        }
+        
+        .btnText {
+            font-size: 1.5em;
+        
+        }
+        
+        .btnTextSubScript {
+            font-size: 0.8em;
+        }
+        
+        .btn-primary {
+            background-color: black;
+            margin: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+        
+        .btn-primary:active {
+            background-color: #ffffff;
+            color: black;
+        }
+        
+        .btn-primary:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+        
+        .row {
+           // margin-left: 15px;
+            margin-right: 15px;
+        }
+        
+        .btn {
+            
+/*            padding-left: 30px;*/
+/*            padding-right: 30px;*/
+        }
+        
+        .lastTry {
+            width: 100%;
+        }
+        
+table {
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+@keyframes glowing {
+     0% { box-shadow: 0 0 -10px #c4a300; }
+  40% { box-shadow: 0 0 20px #c4a300; }
+  60% { box-shadow: 0 0 20px #c4a300; }
+  100% { box-shadow: 0 0 -10px #c4a300; }
+}
+
+
+.txtAreaGlowing {
+    animation: glowing 5000ms infinite;
+}
+
+.lGlyphicon {
+    animation: lHanging 8000ms infinite;
+}
+
+.rGlyphicon {
+    transform: scale(-1,1) translate(5px,5px);
+     animation: rHanging 8000ms infinite;
+}
+
+@keyframes lHanging {
+    0% { transform: translate(5px,5px) rotate(0deg)}
+    25% { transform: translate(5px,5px) rotate(40deg)}
+    50% { transform: translate(5px,5px) rotate(0deg)}
+    75% { transform: translate(5px,5px) rotate(-40deg)}    
+    100% { transform: translate(5px,5px) rotate(0deg)}    
+}
+
+@keyframes rHanging {
+    0% { transform: scale(-1,1) translate(5px,5px) rotate(0deg)}
+    25% { transform: scale(-1,1) translate(5px,5px) rotate(40deg)}
+    50% { transform: scale(-1,1) translate(5px,5px) rotate(0deg)}
+    75% { transform: scale(-1,1) translate(5px,5px) rotate(-40deg)}
+    100% { transform: scale(-1,1) translate(5px,5px) rotate(0deg)}    
+}

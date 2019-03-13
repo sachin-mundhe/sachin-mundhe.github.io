@@ -2,25 +2,50 @@
 <html>
 
 <head>
+    <title>Item Extraction</title>
+    <link rel="icon" href="Icon/sun.jpg" type="image/png/gif">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script src="JSFunctions/Database/database.js"></script>
+    <script src="JSFunctions/UpdateData/updateData.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="JSFunctions/MainFunction_ExtractItems/MainFunction.js"></script>
     <script src="JSFunctions/ExtractItemNumbers/ExtractItemNumbers.js"></script>
     <script src="JSFunctions/CopyTableToClipboard/copyTableToClipboard.js"></script>
     <script src="JSFunctions/GenerateTable_ListOfItems/GenerateTable.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <style></style>  
 </head>
 
 <body>
-    <div>
-        Item No: <textarea type="text" id="itemNumbers" rows="4" cols="40"></textarea>
-    </div>
-
-    <input type="button" value="Submit" onclick="mainFunction()">
-
-    <table id="cpyTable" style="border: 1px solid black"> </table>
-
+    
+    <div id="temp" class="container">
+        <div class="jumbotron">
+            <p id="msg"><span class="glyphicon glyphicon-hand-down lGlyphicon  "></span> Put Your Raw Data In Here <span class="glyphicon glyphicon-hand-down rGlyphicon"></span></p>
+            <textarea class="txtAreaGlowing" type="text" id="itemNumbers" ></textarea>
+            
+            <div id="btnGrid" class="row">
+                <div class="col-md-6"><button  class="btn btn-primary lastTry" type="button" onclick="mainFunction()"><span class="btnText">Submit </span><span class="btnTextSubScript">- Home, Womens, Mens & Kids Team</span></button></div>
+                <div class="col-md-6"><button class="btn btn-primary lastTry"  type="button" onclick="imageryTeam()"><span class="btnText">Submit </span><span class="btnTextSubScript">- Imagery Team</span></button></div>
+            </div>
+            
+            <table id="cpyTable" class=".table-condensed"> </table>
+            
+        </div>
+    </div>    
 </body>
 
+    
+  
+    
 </html>
 
 <!--
 var re = new RegExp("a|b", "i");
 var re = /a|b/i;-->
+    
+
+
